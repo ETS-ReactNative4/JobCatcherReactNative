@@ -1,11 +1,18 @@
 import React from 'react';
-import {createAppContainer, createBottomTabNavigator, createStackNavigator,} from 'react-navigation';
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+  createSwitchNavigator
+} from 'react-navigation';
 import JobApplicationListScreen from "../screens/JobApplicationListScreen";
 import OverviewScreen from "../screens/OverviewScreen";
 import TabBarIcon from "../components/TabBarIcon";
 import JobMapScreen from "../screens/JobMapScreen";
 import CompareScreen from "../screens/CompareScreen";
 import JobApplicationDetailScreen from "../screens/JobApplicationDetailScreen";
+import SignInScreen from "../screens/SignInScreen";
+import AuthLoadingScreen from "../screens/AuthLoadingScreen";
 
 const HeaderConfig = {
   defaultNavigationOptions: {
@@ -82,9 +89,22 @@ const BottomNavigatorConfig = {
   }
 };
 
-export default createAppContainer(createBottomTabNavigator({
+
+const AppStack = createBottomTabNavigator({
   OverviewStack,
   JobApplicationListStack,
   JobMapStack,
   CompareStack
-}, BottomNavigatorConfig));
+}, BottomNavigatorConfig);
+const AuthStack = createStackNavigator({SignInScreen: SignInScreen});
+
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));
