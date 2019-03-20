@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "814050010720",
+    "firebase_url": "https://jobcatcher2.firebaseio.com",
+    "project_id": "jobcatcher2",
+    "storage_bucket": "jobcatcher2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814050010720:android:81a9bff28c9022dd",
+        "android_client_info": {
+          "package_name": "com.este.jobcatcher2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814050010720-b6oa9iivnk1ci3rjhkh5o2oi7fkbqq82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.este.jobcatcher2",
+            "certificate_hash": "e0431fe0aed64a77a37a222bfab459fffe707d4b"
+          }
+        },
+        {
+          "client_id": "814050010720-7ulm9kvgudof3v51f918itd2nm5mr9oc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAknf6Y8cibZovUXmi-1JqjKotGVKSbqSY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814050010720-7ulm9kvgudof3v51f918itd2nm5mr9oc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "814050010720-d9ii9lg97u7ekknl2gjaavovg3rj9egl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esteapps.jobcatcherrn"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814050010720:android:05335d4fe3793836",
+        "android_client_info": {
+          "package_name": "com.esteapps.jobcatcherrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814050010720-knofekrn97n7fojggglrrvibhkt4dde1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esteapps.jobcatcherrn",
+            "certificate_hash": "e0431fe0aed64a77a37a222bfab459fffe707d4b"
+          }
+        },
+        {
+          "client_id": "814050010720-7ulm9kvgudof3v51f918itd2nm5mr9oc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAknf6Y8cibZovUXmi-1JqjKotGVKSbqSY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814050010720-7ulm9kvgudof3v51f918itd2nm5mr9oc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "814050010720-d9ii9lg97u7ekknl2gjaavovg3rj9egl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esteapps.jobcatcherrn"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
