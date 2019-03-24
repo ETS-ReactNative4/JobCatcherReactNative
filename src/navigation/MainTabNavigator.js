@@ -11,6 +11,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import JobMapScreen from "../screens/JobMapScreen";
 import CompareScreen from "../screens/CompareScreen";
 import JobApplicationDetailScreen from "../screens/JobApplicationDetailScreen";
+import NewJobApplicationScreen from '../screens/NewJobApplicationScreen'
 import SignInScreen from "../screens/SignInScreen";
 import AuthLoadingScreen from "../screens/AuthLoadingScreen";
 
@@ -33,7 +34,8 @@ const HeaderConfig = {
 let OverviewStack = createStackNavigator({OverviewScreen: OverviewScreen}, HeaderConfig);
 let JobApplicationListStack = createStackNavigator({
   JobApplicationListScreen: {screen: JobApplicationListScreen},
-  JobApplicationDetailScreen: {screen: JobApplicationDetailScreen}
+  JobApplicationDetailScreen: {screen: JobApplicationDetailScreen},
+  NewJobApplicationScreen: {screen: NewJobApplicationScreen}
 }, HeaderConfig);
 let JobMapStack = createStackNavigator({JobMapScreen: JobMapScreen}, HeaderConfig);
 let CompareStack = createStackNavigator({CompareScreen: CompareScreen}, HeaderConfig);

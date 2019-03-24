@@ -3,8 +3,9 @@ import {FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import JobApplicationListItem from '../components/JobApplicationListItem'
 import {Colors, LoaderScreen, View} from 'react-native-ui-lib';
+import {Fab} from 'native-base'
 
-import Icon from 'react-native-ionicons'
+import {default as Ionicon} from 'react-native-ionicons'
 import firebase from 'react-native-firebase';
 import {FIREBASE_PATH} from "../utils/Constants";
 import moment from "moment/moment";
@@ -17,12 +18,22 @@ class SettingsScreenRedux extends React.Component {
   static navigationOptions = {
     title: 'Job Applications',
     headerRight: (
-      <Icon
+      <Ionicon
         name='funnel'
         color='#ffffff'
         style={{marginRight: 8}}
         size={20}
-        onPress={() => alert('Filter and Sort goes here')}
+        onPress={() => {
+          firebase.auth().signOut().then(() => {
+            this.props.navigation.navigate('SignInScreen', {
+              screenFrom: 'JobApplicationListScreen'
+            })
+          })
+            .catch((error) => {
+              alert('error', error)
+
+            });
+        }}
       />
     )
   };
@@ -101,6 +112,10 @@ class SettingsScreenRedux extends React.Component {
       });
   };
 
+  goToNewJobApplicationScreen = () => {
+    this.props.navigation.navigate('NewJobApplicationScreen');
+  };
+
   render() {
 
     const {loading, animationConfig} = this.state;
@@ -113,10 +128,21 @@ class SettingsScreenRedux extends React.Component {
               color='#bebebe'
               message='Loading Job Applications...'
               overlay
-              {...animationConfig}/></View> : <FlatList
-            data={this.state.jobApplications}
-            renderItem={this._renderItem}
-          />
+              {...animationConfig}/></View> :
+          <View style={{flex: 1}}>
+            <FlatList
+              data={this.state.jobApplications}
+              renderItem={this._renderItem}/>
+            <Fab
+              active={this.state.active}
+              direction="up"
+              containerStyle={{}}
+              style={{backgroundColor: '#5067FF'}}
+              position="bottomRight"
+              onPress={() => this.setState({active: !this.state.active})}>
+              <Ionicon name="add" size={20} onPress={this.goToNewJobApplicationScreen}/>
+            </Fab>
+          </View>
         }
       </Fragment>
     );
