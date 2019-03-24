@@ -10,8 +10,11 @@ target 'JobCatcherReactNative' do
     pod 'Firebase/Core', '~> 5.15.0'
     pod 'Firebase/Auth', '~> 5.15.0'
     pod 'Firebase/Firestore', '~> 5.15.0'
+    pod 'GoogleSignIn', '~> 4.4.0'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  # Commented out as pulling in old version of React and causing conflicts. Probably not needed?
+  #pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   target 'JobCatcherReactNativeTests' do
     inherit! :search_paths
