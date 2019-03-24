@@ -13,8 +13,6 @@ target 'JobCatcherReactNative' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
-
   target 'JobCatcherReactNativeTests' do
     inherit! :search_paths
     # Pods for testing
