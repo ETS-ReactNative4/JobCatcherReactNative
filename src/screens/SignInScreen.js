@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, ScrollView} from 'react-native';
+import {Alert} from 'react-native';
 import {Button, Text, TextField, View} from 'react-native-ui-lib';
 import {connect} from 'react-redux';
 import firebase from 'react-native-firebase';
@@ -101,18 +101,14 @@ class SignInScreenRedux extends React.Component {
   render() {
 
     return (
-      <View flex>
-        <ScrollView
-          keyboardShouldPersistTaps="always"
-          contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
-
-          <View>
-            <Text blue50 text20>Welcome</Text>
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <Text orange30 text20 center>JobCatcher</Text>
+          <View style={{marginTop: 24, marginRight: 16, marginLeft: 16, paddingRight: 16, paddingLeft: 16,}}>
             <TextField
               text50
               dark10
               placeholder='email'
-              hideUnderline
               textContentType='emailAddress'
               keyboardType='email-address'
               autoCapitalize='none'
@@ -122,26 +118,28 @@ class SignInScreenRedux extends React.Component {
               text50
               dark10
               placeholder='password'
-              hideUnderline
               textContentType='password'
               autoCapitalize='none'
               secureTextEntry
               onChangeText={(text) => this.setState({password: text})}
               value={this.state.text}/>
-            <View marginT-100 center>
-              <Button text70 white background-orange30 label="Login" onPress={this.onLogin}/>
-              <Button link text70 orange30 label="Sign Up" marginT-20/>
-              <GoogleSigninButton
-                style={{width: 212, height: 48}}
-                size={GoogleSigninButton.Size.Standard}
-                color={GoogleSigninButton.Color.Auto}
-                onPress={this._signIn}
-              />
-            </View>
-
+          </View>
+          <View center>
+            <Button text70 white background-orange30 label="Sign In With Email" onPress={this.onLogin}/>
+            <Text style={{marginTop: 8, marginBottom: 8}}>-or-</Text>
+            <GoogleSigninButton
+              style={{width: 212, height: 48}}
+              size={GoogleSigninButton.Size.Standard}
+              color={GoogleSigninButton.Color.Auto}
+              onPress={this._signIn}
+            />
           </View>
 
-          {/*          <View style={{flexDirection: 'row'}}>
+        </View>
+
+        <Button fullWidth link marginB-40 text70 orange30 label="Sign Up"/>
+
+        {/*          <View style={{flexDirection: 'row'}}>
             <View style={{width: '20%'}}/>
             <View style={{width: '60%'}}>
               <Text>Sign In</Text>
@@ -160,7 +158,6 @@ class SignInScreenRedux extends React.Component {
             </View>
             <View style={{width: '20%'}}/>
           </View>*/}
-        </ScrollView>
       </View>
     );
   }
