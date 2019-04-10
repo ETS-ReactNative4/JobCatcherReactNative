@@ -12,6 +12,7 @@ class JobApplicationDetailScreenProgress extends React.Component {
 
     return (
       <Fragment>
+
         <Animatable.View animation="fadeIn" easing="ease-out-expo"
                          duration={1000} useNativeDriver>
           <ListItem
@@ -49,26 +50,123 @@ class JobApplicationDetailScreenProgress extends React.Component {
           <Text dark40
                 text70>{jobApplication.contractType}{jobApplication.contractTime} ({jobApplication.jobHours})</Text>
         </View>
-        <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
-          <Text dark10 text70>Link to Job Advert</Text>
-          <Text dark40
-                text70>{jobApplication.jobAdvertURL}</Text>
-        </View>
-        <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
-          <Text dark10 text70>Job Reference</Text>
-          <Text dark40
-                text70>{jobApplication.jobReference}</Text>
-        </View>
-        <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
-          <Text dark10 text70>Job Description</Text>
-          <Text dark40
-                text70>{jobApplication.jobDescription}</Text>
-        </View>
-        <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
-          <Text dark10 text70>Notes</Text>
-          <Text dark40
-                text70>{jobApplication.applicationNotes}</Text>
-        </View>
+
+        <View style={{marginBottom: 8}}/>
+
+        {(jobApplication.jobAdvertURL === '') ?
+          <ListItem
+            activeBackgroundColor={Colors.dark60}
+            activeOpacity={0.3}
+            onPress={() => {
+              Alert.alert('Add Job Advert URL', 'Add Job Advert URL');
+            }}
+            containerStyle={{padding: 8}}
+            height={40}>
+            <ListItem.Part left style={styles.image}>
+              <Icon
+                name='add'
+                size={26}
+                color={CustomColours.dark40}
+              />
+            </ListItem.Part>
+            <ListItem.Part middle column>
+              <Text dark40 text70>Add Job Advert URL</Text>
+            </ListItem.Part>
+          </ListItem> :
+          <Button
+            backgroundColor={CustomColours.colorPrimary}
+            color={CustomColours.colorOnPrimary}
+            label={"View Job Advert"}
+            labelStyle={{fontWeight: '600'}}
+            style={{margin: 8, borderRadius: 3}}
+            onPress={() => {
+              Alert.alert('View Job Advert', 'View Job Advert at \n ' + jobApplication.jobAdvertURL);
+            }}
+          />
+        }
+
+        {(jobApplication.jobReference === '') ?
+          <ListItem
+            activeBackgroundColor={Colors.dark60}
+            activeOpacity={0.3}
+            onPress={() => {
+              Alert.alert('Add Job Reference', 'Add Job Reference');
+            }}
+            containerStyle={{padding: 8}}
+            height={40}>
+            <ListItem.Part left style={styles.image}>
+              <Icon
+                name='add'
+                size={26}
+                color={CustomColours.dark40}
+              />
+            </ListItem.Part>
+            <ListItem.Part middle column>
+              <Text dark40 text70>Add Job Reference</Text>
+            </ListItem.Part>
+          </ListItem> :
+          <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
+            <Text dark10 text70>Job Reference</Text>
+            <Text dark40
+                  text70>{jobApplication.jobReference}</Text>
+          </View>
+        }
+
+
+        {(jobApplication.jobDescription === '') ?
+          <ListItem
+            activeBackgroundColor={Colors.dark60}
+            activeOpacity={0.3}
+            onPress={() => {
+              Alert.alert('Add Job Description', 'Add Job Description');
+            }}
+            containerStyle={{padding: 8}}
+            height={40}>
+            <ListItem.Part left style={styles.image}>
+              <Icon
+                name='add'
+                size={26}
+                color={CustomColours.dark40}
+              />
+            </ListItem.Part>
+            <ListItem.Part middle column>
+              <Text dark40 text70>Add Job Description</Text>
+            </ListItem.Part>
+          </ListItem> :
+          <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
+            <Text dark10 text70>Job Description</Text>
+            <Text dark40
+                  text70>{jobApplication.jobDescription}</Text>
+          </View>
+        }
+
+        {(jobApplication.applicationNotes === '') ?
+          <ListItem
+            activeBackgroundColor={Colors.dark60}
+            activeOpacity={0.3}
+            onPress={() => {
+              Alert.alert('Add Application Notes', 'Add Application Notes');
+            }}
+            containerStyle={{padding: 8}}
+            height={40}>
+            <ListItem.Part left style={styles.image}>
+              <Icon
+                name='add'
+                size={26}
+                color={CustomColours.dark40}
+              />
+            </ListItem.Part>
+            <ListItem.Part middle column>
+              <Text dark40 text70>Add Application Notes</Text>
+            </ListItem.Part>
+          </ListItem> :
+          <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
+            <Text dark10 text70>Notes</Text>
+            <Text dark40
+                  text70>{jobApplication.applicationNotes}</Text>
+          </View>
+        }
+
       </Fragment>
     );
   }
