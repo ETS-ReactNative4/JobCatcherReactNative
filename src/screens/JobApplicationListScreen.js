@@ -97,13 +97,12 @@ class JobApplicationListScreen extends React.Component {
         <View style={{flex: 1}}>
           <JobApplicationList loading={loading} jobApplications={jobApplications}/>
           <Fab
-            active={this.state.active}
             direction="up"
             containerStyle={{}}
             style={{backgroundColor: '#5067FF'}}
             position="bottomRight"
-            onPress={() => this.setState({active: !this.state.active})}>
-            <Ionicon name="add" size={20} onPress={this.goToNewJobApplicationScreen}/>
+            onPress={this.goToNewJobApplicationScreen}>
+            <Ionicon name="add" size={20}/>
           </Fab>
         </View>
       </Fragment>
