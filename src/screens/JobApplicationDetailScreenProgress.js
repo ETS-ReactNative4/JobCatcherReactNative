@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import CustomColours from '../constants/CustomColours';
 import {Alert, StyleSheet, View} from "react-native";
-import {Button, Card, Colors, Text} from 'react-native-ui-lib';
+import {Button, Card, Text} from 'react-native-ui-lib';
+import Icon from 'react-native-ionicons'
 import moment from "moment/moment";
 import HorizontalRule from "../components/HorizontalRule";
 
@@ -44,9 +45,8 @@ class JobApplicationDetailScreenProgress extends React.Component {
             />
           </Fragment> :
           <Fragment>
-            <Card style={styles.card}
-                  onPress={() => {
-                  }}>
+            <Card style={styles.card} onPress={() => {
+            }}>
               <View style={{margin: 16}}>
                 <Text text60 dark10>
                   {jobApplication.currentApplicationStage}
@@ -81,40 +81,61 @@ class JobApplicationDetailScreenProgress extends React.Component {
                     {displayDateCurrentApplicationStageNotes}
                   </Text>
                 </View>
+                <HorizontalRule/>
+                <Button
+                  backgroundColor={CustomColours.colorPrimary}
+                  color={CustomColours.colorOnPrimary}
+                  label='Set Deadline'
+                  labelStyle={{fontWeight: '600'}}
+                  style={{marginTop: 8, borderRadius: 3}}
+                  iconSource={() => <Icon name='calendar' color={CustomColours.colorOnPrimary}
+                                          style={{marginRight: 8}}/>}
+                  onPress={() => {
+                    Alert.alert('Set Deadline', 'Set a Deadline here.');
+                  }}
+                />
+
+                <Button
+                  outline
+                  color={CustomColours.colorPrimary}
+                  label='Add Reminder(s)'
+                  labelStyle={{fontWeight: '600'}}
+                  style={{marginTop: 8, borderRadius: 3}}
+                  iconSource={() => <Icon name='alarm' color={CustomColours.colorPrimary} style={{marginRight: 8}}/>}
+                  onPress={() => {
+                    Alert.alert('Set Reminder(s)', 'Set a Deadline here.');
+                  }}
+                />
+
               </View>
             </Card>
-            <Button
-              backgroundColor="#00ff00"
-              label="Add Stage"
-              labelStyle={{fontWeight: '600'}}
-              style={{marginBottom: 16}}
-              onPress={() => {
-              }}
-            />
-            <Button
-              backgroundColor="#00ff00"
-              label="View History"
-              labelStyle={{fontWeight: '600'}}
-              style={{marginBottom: 16}}
-              onPress={() => {
-              }}
-            />
-            <Button
-              backgroundColor="#00ff00"
-              label="Add Deadline"
-              labelStyle={{fontWeight: '600'}}
-              style={{marginBottom: 16}}
-              onPress={() => {
-              }}
-            />
-            <Button
-              backgroundColor="#00ff00"
-              label="Add Reminder"
-              labelStyle={{fontWeight: '600'}}
-              style={{marginBottom: 16}}
-              onPress={() => {
-              }}
-            />
+
+            <View style={{marginRight: 16, marginLeft: 16}}>
+
+              <Button
+                backgroundColor={CustomColours.colorPrimary}
+                color={CustomColours.colorOnPrimary}
+                label='Add Stage'
+                labelStyle={{fontWeight: '600'}}
+                style={{marginTop: 8, borderRadius: 3}}
+                iconSource={() => <Icon name='add' color={CustomColours.colorOnPrimary} style={{marginRight: 8}}/>}
+                onPress={() => {
+                  Alert.alert('Set Deadline', 'Set a Deadline here.');
+                }}
+              />
+
+              <Button
+                backgroundColor={CustomColours.colorPrimary}
+                color={CustomColours.colorOnPrimary}
+                label='View History'
+                labelStyle={{fontWeight: '600'}}
+                style={{marginTop: 8, borderRadius: 3}}
+                iconSource={() => <Icon name='archive' color={CustomColours.colorOnPrimary} style={{marginRight: 8}}/>}
+                onPress={() => {
+                  Alert.alert('Set Deadline', 'Set a Deadline here.');
+                }}
+              />
+            </View>
           </Fragment>
         }
       </View>
