@@ -1,16 +1,11 @@
 import React, {Fragment} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {
-  BorderRadiuses,
-  Button,
   Carousel,
-  Colors,
   Constants,
-  ListItem,
   LoaderScreen,
   TabBar,
-  Text,
-  ThemeManager
+  Text
 } from 'react-native-ui-lib';
 import {connect} from 'react-redux';
 import firebase from "react-native-firebase";
@@ -65,8 +60,8 @@ class JobApplicationDetailRedux extends React.Component {
 
           isLocationSet: docData.isLocationSet || false,
           locationName: docData.locationName || 'No Location Set',
-          locationLat: docData.locationLat || '0.0',
-          locationLong: docData.locationLong || '0.0',
+          locationLatitude: docData.locationLatitude || '0.0',
+          locationLongitude: docData.locationLongitude || '0.0',
           isRemote: docData.isRemote || false,
 
           currentApplicationStage: docData.currentApplicationStage,
