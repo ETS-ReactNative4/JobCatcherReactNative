@@ -5,6 +5,7 @@ import CustomTag from "./CustomTag";
 import moment from "moment/moment";
 import * as Animatable from 'react-native-animatable';
 import CustomColours from "../constants/CustomColours";
+import { withNavigation } from 'react-navigation'
 
 class JobApplicationListItem extends React.PureComponent {
 
@@ -94,4 +95,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default JobApplicationListItem;
+export default withNavigation(JobApplicationListItem);
