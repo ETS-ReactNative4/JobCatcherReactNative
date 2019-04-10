@@ -139,25 +139,6 @@ class SignInScreenRedux extends React.Component {
 
         <Button fullWidth link marginB-40 text70 orange30 label="Sign Up"/>
 
-        {/*          <View style={{flexDirection: 'row'}}>
-            <View style={{width: '20%'}}/>
-            <View style={{width: '60%'}}>
-              <Text>Sign In</Text>
-              <TextField
-                text40
-                placeholder='email'
-                hideUnderline
-                textContentType='emailAddress'
-                keyboardType='email-address'/>
-              <TextField
-                text40
-                placeholder='password'
-                hideUnderline
-                textContentType='password'
-                secureTextEntry={true}/>
-            </View>
-            <View style={{width: '20%'}}/>
-          </View>*/}
       </View>
     );
   }
