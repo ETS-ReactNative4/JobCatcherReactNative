@@ -37,7 +37,8 @@ class JobApplicationDetailRedux extends React.Component {
 
   getjobApplications = () => {
     let jobApplicationID = this.props.navigation.getParam('jobApplicationID', 0);
-    const UID = 'iNQaYaxx0rXmPOqvXCK5feZp5FD3';
+
+    const UID = firebase.auth().currentUser.uid;
 
     let jobApplicationRef = firebase.firestore().collection(FIREBASE_PATH.JOB_APPLICATIONS_ROOT).doc(UID)
       .collection(FIREBASE_PATH.JOB_APPLICATION_LIST).doc(jobApplicationID);
