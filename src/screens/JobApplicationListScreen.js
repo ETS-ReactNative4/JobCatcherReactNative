@@ -57,6 +57,7 @@ class JobApplicationListScreen extends React.Component {
       .collection(FIREBASE_PATH.JOB_APPLICATIONS_ROOT)
       .doc(UID)
       .collection(FIREBASE_PATH.JOB_APPLICATION_LIST)
+      .orderBy('timestampCreated', 'asc')
       .get()
       .then(querySnapshot => {
         let jobApplications = [];
