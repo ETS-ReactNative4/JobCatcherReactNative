@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import CustomColours from '../constants/CustomColours';
-import {Alert, StyleSheet, View} from "react-native";
+import {Alert, Linking, StyleSheet, View} from "react-native";
 import {Button, Colors, ListItem, Text} from 'react-native-ui-lib';
 import Icon from 'react-native-ionicons'
 import * as Animatable from 'react-native-animatable';
@@ -80,7 +80,16 @@ class JobApplicationDetailScreenProgress extends React.Component {
             labelStyle={{fontWeight: '600'}}
             style={{margin: 8, borderRadius: 3}}
             onPress={() => {
-              Alert.alert('View Job Advert', 'View Job Advert at \n ' + jobApplication.jobAdvertURL);
+              Linking.canOpenURL(jobApplication.jobAdvertURL).then(supported => {
+
+                //TODO: Test on iOS. Also, doesn't seem to work if link doesn't start with http?
+
+                if (supported) {
+                  Linking.openURL(jobApplication.jobAdvertURL);
+                } else {
+                  console.log("Don't know how to open URI: " + jobApplication.jobAdvertURL);
+                }
+              });
             }}
           />
         }
