@@ -3,7 +3,6 @@ import CustomColours from '../constants/CustomColours';
 import {Alert, Linking, StyleSheet, View} from "react-native";
 import {Button, Colors, ListItem, Text} from 'react-native-ui-lib';
 import Icon from 'react-native-ionicons'
-import * as Animatable from 'react-native-animatable';
 
 class JobApplicationDetailScreenProgress extends React.Component {
   render() {
@@ -13,8 +12,6 @@ class JobApplicationDetailScreenProgress extends React.Component {
     return (
       <Fragment>
 
-        <Animatable.View animation="fadeIn" easing="ease-out-expo"
-                         duration={1000} useNativeDriver>
           <ListItem
             activeBackgroundColor={Colors.dark60}
             activeOpacity={0.3}
@@ -38,7 +35,6 @@ class JobApplicationDetailScreenProgress extends React.Component {
               </ListItem.Part>
             </ListItem.Part>
           </ListItem>
-        </Animatable.View>
 
         <View style={{marginTop: 8, marginRight: 8, marginLeft: 8}}>
           <Text dark10 text70>Wages/Salary</Text>
@@ -53,46 +49,49 @@ class JobApplicationDetailScreenProgress extends React.Component {
 
         <View style={{marginBottom: 8}}/>
 
-        {(jobApplication.jobAdvertURL === '') ?
-          <ListItem
-            activeBackgroundColor={Colors.dark60}
-            activeOpacity={0.3}
-            onPress={() => {
-              Alert.alert('Add Job Advert URL', 'Add Job Advert URL');
-            }}
-            containerStyle={{padding: 8}}
-            height={40}>
-            <ListItem.Part left style={styles.image}>
-              <Icon
-                name='add'
-                size={26}
-                color={CustomColours.dark40}
-              />
-            </ListItem.Part>
-            <ListItem.Part middle column>
-              <Text dark40 text70>Add Job Advert URL</Text>
-            </ListItem.Part>
-          </ListItem> :
+
+        <View style={{flexDirection: "row", margin: 8}}>
+
+          {(jobApplication.jobAdvertURL === '') ?
+            <Button
+              disabled
+              backgroundColor={CustomColours.colorPrimary}
+              color={CustomColours.colorOnPrimary}
+              label={"View Job Advert"}
+              labelStyle={{fontWeight: '600'}}
+              style={styles.jobAdvertURLButtonLeft}
+            />
+            :
+            <Button
+              backgroundColor={CustomColours.colorPrimary}
+              color={CustomColours.colorOnPrimary}
+              label={"View Job Advert"}
+              labelStyle={{fontWeight: '600'}}
+              style={styles.jobAdvertURLButtonLeft}
+              onPress={() => {
+                Linking.canOpenURL(jobApplication.jobAdvertURL).then(supported => {
+                  if (supported) {
+                    Linking.openURL(jobApplication.jobAdvertURL);
+                  } else {
+                    Alert.alert("Can't open URL", jobApplication.jobAdvertURL);
+                    console.log("Don't know how to open URI: " + jobApplication.jobAdvertURL);
+                  }
+                });
+              }}
+            />
+          }
           <Button
-            backgroundColor={CustomColours.colorPrimary}
+            backgroundColor={CustomColours.colorPrimaryLight}
             color={CustomColours.colorOnPrimary}
-            label={"View Job Advert"}
-            labelStyle={{fontWeight: '600'}}
-            style={{margin: 8, borderRadius: 3}}
+            label=''
+            style={styles.jobAdvertURLButtonRight}
+            iconSource={() => <Icon name='create' color={CustomColours.colorOnPrimary} size={16}
+                                    style={{marginRight: 8, marginLeft: 8}}/>}
             onPress={() => {
-              Linking.canOpenURL(jobApplication.jobAdvertURL).then(supported => {
-
-                //TODO: Test on iOS. Also, doesn't seem to work if link doesn't start with http?
-
-                if (supported) {
-                  Linking.openURL(jobApplication.jobAdvertURL);
-                } else {
-                  console.log("Don't know how to open URI: " + jobApplication.jobAdvertURL);
-                }
-              });
+              Alert.alert('Edit Job Advert URL', 'Edit Job Advert URL');
             }}
           />
-        }
+        </View>
 
         {(jobApplication.jobReference === '') ?
           <ListItem
@@ -188,6 +187,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  jobAdvertURLButtonLeft: {
+    flex: 6,
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 0
+  },
+  jobAdvertURLButtonRight: {
+    flex: 1,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 3,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 3
+  }
 });
 
 export default JobApplicationDetailScreenProgress
