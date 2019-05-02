@@ -8,6 +8,7 @@ import HorizontalRule from "../components/HorizontalRule";
 import ApplicationStageStatusTag from '../components/ApplicationStageStatusTag'
 import firebase from "react-native-firebase";
 import {APPLICATION_STAGE_STATUS_ENUM, FIREBASE_PATH} from "../utils/Constants";
+import {SET_APPLICATION_STATUS} from "../utils/ApplicationStageStatusMapper";
 
 class JobApplicationDetailScreenProgress extends React.Component {
 
@@ -21,6 +22,7 @@ class JobApplicationDetailScreenProgress extends React.Component {
       currentApplicationStageStatus: this.props.jobApplication.currentApplicationStageStatus,
       currentApplicationStageDateStarted: this.props.jobApplication.currentApplicationStageDateStarted,
       currentApplicationStageDateCompleted: this.props.jobApplication.currentApplicationStageDateCompleted,
+      currentApplicationStageDateUpdated: this.props.jobApplication.currentApplicationStageDateUpdated,
       currentApplicationStageNotes: this.props.jobApplication.currentApplicationStageNotes
     };
 
@@ -28,27 +30,26 @@ class JobApplicationDetailScreenProgress extends React.Component {
 
   updateCurrentApplicationStageStatus = (currentApplicationStageStatus) => {
 
-    let currentApplicationStageDateCompleted = moment().valueOf();
+    let applicationStatus = SET_APPLICATION_STATUS(this.state.currentApplicationStage, currentApplicationStageStatus);
 
     const UID = firebase.auth().currentUser.uid;
-    const updateRef = firebase.firestore()
-      .collection(FIREBASE_PATH.JOB_APPLICATIONS_ROOT)
-      .doc(UID)
-      .collection(FIREBASE_PATH.JOB_APPLICATION_LIST)
-      .doc(this.props.jobApplication.id);
+    const updateRef = firebase.firestore().collection(FIREBASE_PATH.JOB_APPLICATIONS_ROOT).doc(UID)
+      .collection(FIREBASE_PATH.JOB_APPLICATION_LIST).doc(this.props.jobApplication.id);
 
     updateRef.update({
       currentApplicationStageStatus: currentApplicationStageStatus,
-      currentApplicationStageDateCompleted: currentApplicationStageDateCompleted
+      currentApplicationStageDateCompleted: moment().valueOf(),
+      applicationStatus: applicationStatus,
+      currentApplicationStageDateUpdated: moment().valueOf(),
+      timestampLastUpdated: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
       this.setState({
-        currentApplicationStageStatus, currentApplicationStageDateCompleted
+        currentApplicationStageStatus, currentApplicationStageDateCompleted, currentApplicationStageDateUpdated, applicationStatus
       });
 
     }).catch((error) => {
-      console.error("Error updating Job Application: ", error);
+      console.log("Error updating Job Application: ", error);
     });
-
 
   };
 
@@ -229,6 +230,7 @@ class JobApplicationDetailScreenProgress extends React.Component {
                   }}
                 />*/}
 
+                {currentApplicationStageStatus === APPLICATION_STAGE_STATUS_ENUM.IN_PROGRESS &&
                 <Button
                   backgroundColor={CustomColours.colorPrimary}
                   color={CustomColours.colorOnPrimary}
@@ -240,6 +242,7 @@ class JobApplicationDetailScreenProgress extends React.Component {
                     Alert.alert('Set Deadline', 'Set a Deadline here.');
                   }}
                 />
+                }
 
                 <Button
                   backgroundColor={CustomColours.colorPrimary}
